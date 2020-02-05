@@ -1,5 +1,7 @@
 {
   "name": "assignmentTask",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

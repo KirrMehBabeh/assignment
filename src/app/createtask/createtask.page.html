@@ -1,9 +1,27 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>createtask</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <form id="trackerForm" [formGroup]="taskForm">
+    <ion-list>
+      <ion-item>
+        <ion-label>Task Name:</ion-label>
+        <ion-input name="taskName" placeholder="Enter name of task" type="text" formControlName="name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Date to be Finished:</ion-label>
+        <ion-datetime displayFormat="DD MM YYYY" placeholder="Select Date" formControlName="dateComplete"></ion-datetime>
+      </ion-item>
+      <ion-button expand="full" color="tertiary" (click)="saveTask()" [disabled]="!taskForm.valid">Add Task</ion-button>
+      <ion-button expand="full" color="tertiary" (click)="close()">Cancel</ion-button>
+    </ion-list>
+  </form>
 </ion-content>
