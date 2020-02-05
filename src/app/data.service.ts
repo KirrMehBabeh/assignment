@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Subscription, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Note } from '../models/note.interface';
 import { Task } from '../models/task.inteface';
 import { AngularFireAuth } from '@angular/fire/auth';
 
@@ -12,9 +11,9 @@ import { AngularFireAuth } from '@angular/fire/auth';
   providedIn: 'root'
 })
 export class DataService {
-  private notesCollection: AngularFirestoreCollection<Note>;
+  private notesCollection: AngularFirestoreCollection<Task>;
   // notes$: Observable<Note[]>;
-  public notes$ = new BehaviorSubject<Note[]>([]);
+  public notes$ = new BehaviorSubject<Task[]>([]);
   private uid: string;
   private authStatus: Subscription;
   private ncSub: Subscription;
@@ -37,7 +36,7 @@ export class DataService {
         // create path
         const path = `notes/${this.uid}/usernotes`;
         // set the collection
-        this.notesCollection = afs.collection<Note>(path);
+        this.notesCollection = afs.collection<Task>(path);
         // this.notes$ = this.getNotes();
         this.ncSub = this.getNotes().subscribe((data) => {
           this.notes$.next(data);
@@ -97,7 +96,7 @@ export class DataService {
       }
     } );
   }
-  addNote(data: Note) {
+  addNote(data: Task) {
     this.notesCollection.add(data);
   }
 
@@ -105,7 +104,7 @@ export class DataService {
     // this function retuns an Observable
     return this.notesCollection.snapshotChanges()
       .pipe( map(actions => actions.map(a => {
-          const data = a.payload.doc.data() as Note;
+          const data = a.payload.doc.data() as Task;
           const id = a.payload.doc.id;
           return { id, ...data };
         }))

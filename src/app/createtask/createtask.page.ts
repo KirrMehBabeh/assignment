@@ -35,7 +35,7 @@ export class CreatetaskPage implements OnInit {
     }
     this.dataService.addToList( task ); 
     this.taskForm.reset();
-    this.modal.dismiss();
+    this.modal.dismiss( task );
   }
   close() {
     this.taskForm.reset();
