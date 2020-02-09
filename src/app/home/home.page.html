@@ -19,9 +19,8 @@
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let item of list">
-      <ion-grid>
-        
-        <ion-row>
+      <ion-grid (click)="getNoteDetail(item)">
+        <ion-row >
           <ion-col>
             <img src="assets/icon/favicon.png">
           </ion-col>

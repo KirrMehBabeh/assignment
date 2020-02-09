@@ -1,6 +1,7 @@
 export interface Task {
     name:string;
-    start:number;
-    dateToComplete:Date;
+    date:Date;
+    details:string;
     completed:boolean;
+    image: any;
 }

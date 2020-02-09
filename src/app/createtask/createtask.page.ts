@@ -21,7 +21,9 @@ export class CreatetaskPage implements OnInit {
   ngOnInit() {
     this.taskForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3) ] ],
-      dateComplete: ['', [Validators.required] ]  
+      dateComplete: ['', [Validators.required] ],
+      details: [''],
+      image: ['']
      });
   }
   saveTask() {
@@ -29,11 +31,11 @@ export class CreatetaskPage implements OnInit {
     console.log(this.taskForm.get('dateComplete').value);
     let task:Task = {
       name: this.taskForm.get('name').value,
-      start: this.startTime,
-      dateToComplete: this.taskForm.get('dateComplete').value,
+      date: this.taskForm.get('dateComplete').value,
+      details: this.taskForm.get('details').value,
+      image: this.taskForm.get('image').value,
       completed: false
     }
-    this.dataService.addToList( task ); 
     this.taskForm.reset();
     this.modal.dismiss( task );
   }

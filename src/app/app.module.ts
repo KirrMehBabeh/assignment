@@ -17,7 +17,11 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
 // modal imports
 import { SignupPageModule } from './signup/signup.module';
+import { NoteDetailPageModule } from './note-detail/note-detail.module';
 import { CreatetaskPageModule } from './createtask/createtask.module';
+import { HomePageModule } from './home/home.module';
+
+
 // camera 
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
@@ -34,6 +38,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
     AngularFireStorageModule,
     SignupPageModule,
     CreatetaskPageModule,
+    NoteDetailPageModule,
+    HomePageModule,
   ],
   providers: [
     StatusBar,

@@ -3,6 +3,7 @@ import { ModalController, ToastController } from '@ionic/angular';
 import { CreatetaskPage } from '../createtask/createtask.page';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { NoteDetailPage } from '../note-detail/note-detail.page';
 import { BehaviorSubject, ReplaySubject, Subscription } from 'rxjs';
 
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
@@ -48,8 +49,8 @@ export class HomePage {
     this.getNotes();
     //this.listSub = this.dataService.list$.subscribe( taskData => this.list = taskData );
   }
-  delete( itemStart ) {
-    this.dataService.deleteFromList( itemStart );
+  delete(  ) {
+    
   }
   getNotes() {
     // set loading state to true to show spinner
@@ -62,8 +63,8 @@ export class HomePage {
       this.loadingState.next(false);
     });
   }
-  completeTask(itemStart){
-    this.data.setCompleted( itemStart );
+  completeTask(id){
+    this.data.updateNote( id );
     
   }
   async addTask() {
@@ -81,6 +82,30 @@ export class HomePage {
       console.log(error);
     });
     createTaskModal.present();
+  }
+
+  async getNoteDetail( task ) {
+    const detailModal = await this.modal.create({ 
+      component: NoteDetailPage, componentProps: {
+      "name": task.name,
+      "details": task.details,
+      "date": task.date,
+      "completed": task.completed,
+      "image": task.image,
+      "id": task.id
+    } });
+    detailModal.onDidDismiss()
+      .then( (response) => {
+        if ( response.data ) {
+          // save note
+          // console.log( response.data );
+          this.data.updateNote( response.data );
+        }
+      })
+      .catch( (error) => {
+        console.log(error);
+      });
+    detailModal.present();
   }
   signOut() {
     this.afAuth.auth.signOut().then(()=>{

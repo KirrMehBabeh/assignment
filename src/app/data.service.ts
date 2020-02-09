@@ -22,12 +22,12 @@ export class DataService {
 
   constructor(private afs: AngularFirestore, private afauth: AngularFireAuth) {
     // get the user auth status
-    this.loadData().then((data:Array<Task>) => {
+    /* this.loadData().then((data:Array<Task>) => {
       data.forEach((item) => {
         this.taskList.push(item)
       })
       this.list$.next( this.taskList );
-    })
+    }) */
     this.list$.next( this.taskList );
     this.authStatus = afauth.authState.subscribe((user) => {
       if (user) {
@@ -47,30 +47,10 @@ export class DataService {
       }
     });
   }
-  addToList( task:Task ) {
+  /* addToList( task:Task ) {
     this.taskList.push( task );
     this.list$.next( this.taskList );
     this.saveData();
-  }
-  deleteFromList( id:number ) {
-    this.taskList.forEach( (task:Task, index ) => {
-      if( task.start == id ) {
-        this.taskList.splice( index, 1 );
-      }
-    });
-    this.list$.next( this.taskList );
-  }
-  setCompleted(id:number){
-    this.taskList.forEach( (task:Task, index ) => {
-      if( task.start == id ) {
-        if(task.completed){
-          task.completed = false;
-        }
-        else{
-          task.completed = true;
-        }
-      }
-    });
   }
   saveData() {
     let data = JSON.stringify( this.taskList );
@@ -95,7 +75,7 @@ export class DataService {
         resolve( data );
       }
     } );
-  }
+  } */
   addNote(data: Task) {
     this.notesCollection.add(data);
   }
@@ -112,7 +92,7 @@ export class DataService {
   }
 
   updateNote( note ) {
-    this.notesCollection.doc( note.id ).update( {name: note.name, note: note.note });
+    this.notesCollection.doc( note.id ).update( { name: note.name, details: note.details, date: note.date, completed: note.completed, image: note.image });
   }
 
   deleteNote( id ) {

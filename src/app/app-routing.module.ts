@@ -15,7 +15,11 @@ const routes: Routes = [
   {
     path: 'createtask',
     loadChildren: () => import('./createtask/createtask.module').then( m => m.CreatetaskPageModule)
+  },  {
+    path: 'note-detail',
+    loadChildren: () => import('./note-detail/note-detail.module').then( m => m.NoteDetailPageModule)
   },
+
 ];
 
 @NgModule({
