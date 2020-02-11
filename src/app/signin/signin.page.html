@@ -1,3 +1,6 @@
+<head>
+  <script src="../assets/js/test.js"></script>
+</head>
 <ion-header>
   <ion-toolbar>
     <ion-title>Sign In</ion-title>
@@ -21,7 +24,7 @@
         <ion-label class="sign-up-label">Don't have an account?</ion-label>
       </ion-item>
       <div class="button-center">
-        <ion-button type="button" fill="clear" (click)="signUp()">
+        <ion-button type="button" fill="clear" (click)="signUp()" (onclick)="showAlert">
           Sign up
         </ion-button>
       </div>
