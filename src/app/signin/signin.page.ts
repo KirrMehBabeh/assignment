@@ -28,9 +28,6 @@ export class SigninPage implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]]
     })
   }
-  alert(){
-    this.dialogs.alert('Please Log In');
-  }
   signIn() {
     const email = this.signInForm.controls.email.value;
     const password = this.signInForm.controls.password.value;
@@ -38,6 +35,7 @@ export class SigninPage implements OnInit {
       .then((response) => {
         this.signInForm.reset();
         this.router.navigate(['/home']);
+        this.dialogs.alert('You have logged in');
       })
       .catch((error) => {
         console.log(error)
