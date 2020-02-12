@@ -22,6 +22,7 @@ import { CreatetaskPageModule } from './createtask/createtask.module';
 import { HomePageModule } from './home/home.module';
 
 
+import { Dialogs } from '@ionic-native/dialogs/ngx';
 // camera 
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
@@ -46,7 +47,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     // camera provider
-    Camera
+    Camera,
+    Dialogs
   ],
   bootstrap: [AppComponent]
 })

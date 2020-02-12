@@ -24,10 +24,13 @@
         <ion-label class="sign-up-label">Don't have an account?</ion-label>
       </ion-item>
       <div class="button-center">
-        <ion-button type="button" fill="clear" (click)="signUp()" (onclick)="showAlert">
+        <ion-button type="button" fill="clear" (click)="signUp()">
           Sign up
         </ion-button>
       </div>
+      <ion-button (click)="alert()">
+        Click Me
+      </ion-button>
     </ion-list>
   </form>
 </ion-content>

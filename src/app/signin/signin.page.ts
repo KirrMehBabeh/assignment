@@ -4,6 +4,7 @@ import { SignupPage } from '../signup/signup.page';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { Dialogs } from '@ionic-native/dialogs/ngx';
 
 @Component({
   selector: 'app-signin',
@@ -17,7 +18,8 @@ export class SigninPage implements OnInit {
     private modal: ModalController,
     private auth: AuthService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private dialogs: Dialogs
   ) { }
 
   ngOnInit() {
@@ -26,7 +28,9 @@ export class SigninPage implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]]
     })
   }
-
+  alert(){
+    this.dialogs.alert('Please Log In');
+  }
   signIn() {
     const email = this.signInForm.controls.email.value;
     const password = this.signInForm.controls.password.value;
